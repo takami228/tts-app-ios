@@ -7,19 +7,28 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
-
+    @IBOutlet var TextLabel: UILabel!
+    @IBOutlet var Button: UIButton!
+    @IBOutlet var TextField: UITextField!
+    
+    @IBAction func TouchEvent(_ sender: Any) {
+        let talker = AVSpeechSynthesizer()
+        let utterance = AVSpeechUtterance(string: TextField.text!)
+        utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
+        talker.speak(utterance)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        TextField.keyboardType = UIKeyboardType.default
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
 
 }
 
